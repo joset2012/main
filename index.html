@@ -1,19 +1,824 @@
 <!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<title>
-   Hey,伙伴，欢迎来到乐雨丸服务器！
-</title>
-  <h1>
-    Hey,伙伴，欢迎来到乐雨丸服务器！
-  </h1>
-  <h2>
-    本文攥写人介绍：
-  </h2>
-  <p>
-      我是谁：Cech
-      Bilibili:Cech_Mofing
-      介绍我自己 ：
-            一个热衷于本服务器“元老级”萌新玩家
-  </p>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurWorldNetwork - Create</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        // Tailwind配置
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6', // 主色调：明亮的蓝色
+                        secondary: '#10B981', // 辅助色：绿色
+                        accent: '#F59E0B', // 强调色：橙色
+                        dark: '#111827', // 深色背景
+                        'dark-light': '#1F2937', // 稍亮的深色
+                    },
+                    fontFamily: {
+                        minecraft: ['Minecraft', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .text-shadow-lg {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+                100% { transform: translateY(0px); }
+            }
+        }
+    </style>
+    <!-- 引入字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-gray-100 bg-dark overflow-x-hidden">
+    <!-- 背景图片 - 可通过修改以下URL自定义 -->
+    <div id="background" class="fixed inset-0 z-0 bg-cover bg-center transition-all duration-1000 ease-in-out" style="background-image: url('https://picsum.photos/id/1015/1920/1080'); filter: brightness(0.3);"></div>
+    
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-light/70 bg-blur">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                    <i class="fa fa-cube text-2xl"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-wide text-shadow">
+                    OurWorld<span class="text-primary">Network</span>
+                </span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="hover:text-primary transition-colors duration-300 font-medium">首页</a>
+                <a href="#about" class="hover:text-primary transition-colors duration-300 font-medium">服务器介绍</a>
+                <a href="#downloads" class="hover:text-primary transition-colors duration-300 font-medium">下载</a>
+                <a href="#status" class="hover:text-primary transition-colors duration-300 font-medium">服务器状态</a>
+                <a href="#community" class="hover:text-primary transition-colors duration-300 font-medium">社区</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-dark-light/95 bg-blur absolute w-full">
+            <div class="container mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="#home" class="py-2 hover:text-primary transition-colors duration-300 font-medium">首页</a>
+                <a href="#about" class="py-2 hover:text-primary transition-colors duration-300 font-medium">服务器介绍</a>
+                <a href="#downloads" class="py-2 hover:text-primary transition-colors duration-300 font-medium">下载</a>
+                <a href="#status" class="py-2 hover:text-primary transition-colors duration-300 font-medium">服务器状态</a>
+                <a href="#community" class="py-2 hover:text-primary transition-colors duration-300 font-medium">社区</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页区域 -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center z-10 pt-16">
+        <div class="container mx-auto px-4 py-16 text-center">
+            <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-extrabold mb-6 leading-tight text-shadow-lg animate-float">
+                OurWorld<span class="text-primary">Network</span>
+                <span class="block text-[clamp(1.5rem,5vw,3rem)] text-accent mt-2">- Create</span>
+            </h1>
+            <p class="text-[clamp(1rem,3vw,1.5rem)] max-w-3xl mx-auto mb-10 text-gray-300 text-shadow">
+                加入我们的创意世界，一起建造、探索、冒险，创造属于我们的传奇故事
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#about" class="px-8 py-3 bg-primary hover:bg-primary/80 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    了解更多
+                </a>
+                <a href="#downloads" class="px-8 py-3 bg-accent hover:bg-accent/80 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fa fa-download mr-2"></i>立即下载
+                </a>
+            </div>
+            
+            <!-- 服务器IP -->
+            <div class="mt-16 inline-block bg-dark-light/80 bg-blur px-6 py-3 rounded-lg border border-gray-700">
+                <p class="text-gray-400 mb-1">服务器IP</p>
+                <p id="serverIp" class="text-xl font-mono font-bold text-primary select-all">mc.ourworldnetwork.com</p>
+                <button onclick="copyToClipboard('serverIp')" class="mt-2 text-sm text-gray-300 hover:text-primary transition-colors">
+                    <i class="fa fa-copy mr-1"></i>复制
+                </button>
+            </div>
+        </div>
+        
+        <!-- 向下滚动指示 -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-white transition-colors">
+                <i class="fa fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 服务器介绍 -->
+    <section id="about" class="relative py-24 z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 text-shadow">服务器介绍</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h3 class="text-2xl font-bold mb-6 text-primary">关于 OurWorldNetwork</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        OurWorldNetwork 是一个专注于创意与协作的 Minecraft 服务器社区，我们致力于为玩家提供一个稳定、友好且充满无限可能的游戏环境。
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        在 "Create" 服务器中，我们结合了 Create 模组的机械建造乐趣与原版 Minecraft 的探索体验，让玩家可以发挥无限创意，建造复杂的机械装置、自动化系统，探索广阔的世界。
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-dark-light/60 p-5 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300">
+                            <div class="text-primary text-3xl mb-3">
+                                <i class="fa fa-cogs"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Create 模组</h4>
+                            <p class="text-gray-400 text-sm">丰富的机械系统，让创意变为现实</p>
+                        </div>
+                        <div class="bg-dark-light/60 p-5 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300">
+                            <div class="text-secondary text-3xl mb-3">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">友好社区</h4>
+                            <p class="text-gray-400 text-sm">热情的玩家社区，共同成长进步</p>
+                        </div>
+                        <div class="bg-dark-light/60 p-5 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300">
+                            <div class="text-accent text-3xl mb-3">
+                                <i class="fa fa-shield"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">稳定安全</h4>
+                            <p class="text-gray-400 text-sm">24/7 在线，DDoS 保护，数据定期备份</p>
+                        </div>
+                        <div class="bg-dark-light/60 p-5 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300">
+                            <div class="text-purple-400 text-3xl mb-3">
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">定期活动</h4>
+                            <p class="text-gray-400 text-sm">建筑比赛、冒险挑战等丰富活动</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 md:order-2 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 border border-gray-700">
+                    <img src="https://picsum.photos/id/1039/800/600" alt="Minecraft服务器游戏截图" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="downloads" class="relative py-24 z-10 bg-dark-light/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 text-shadow">客户端与资源包</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">下载我们定制的客户端或资源包，获得最佳游戏体验</p>
+                <div class="w-24 h-1 bg-accent mx-auto rounded-full mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 完整客户端 -->
+                <div class="bg-dark-light/60 rounded-xl overflow-hidden border border-gray-700 hover:border-accent/50 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-r from-accent/20 to-primary/20 flex items-center justify-center">
+                        <i class="fa fa-desktop text-6xl text-accent"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">完整客户端</h3>
+                        <p class="text-gray-400 text-sm mb-4">包含所有必要模组的一键启动客户端，适合新手玩家</p>
+                        <div class="flex items-center text-gray-400 text-sm mb-5">
+                            <div class="flex items-center mr-4">
+                                <i class="fa fa-hdd-o mr-1"></i> 1.2GB
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-calendar mr-1"></i> 2023-06-15
+                            </div>
+                        </div>
+                        <a href="#" class="block w-full text-center py-3 bg-accent hover:bg-accent/80 rounded-lg font-medium transition-colors duration-300">
+                            <i class="fa fa-download mr-2"></i>下载客户端
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 模组包 -->
+                <div class="bg-dark-light/60 rounded-xl overflow-hidden border border-gray-700 hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
+                        <i class="fa fa-cube text-6xl text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">模组包</h3>
+                        <p class="text-gray-400 text-sm mb-4">适用于已有启动器的玩家，仅包含必要的模组文件</p>
+                        <div class="flex items-center text-gray-400 text-sm mb-5">
+                            <div class="flex items-center mr-4">
+                                <i class="fa fa-hdd-o mr-1"></i> 850MB
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-calendar mr-1"></i> 2023-06-15
+                            </div>
+                        </div>
+                        <a href="#" class="block w-full text-center py-3 bg-primary hover:bg-primary/80 rounded-lg font-medium transition-colors duration-300">
+                            <i class="fa fa-download mr-2"></i>下载模组包
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 资源包 -->
+                <div class="bg-dark-light/60 rounded-xl overflow-hidden border border-gray-700 hover:border-secondary/50 transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-r from-secondary/20 to-accent/20 flex items-center justify-center">
+                        <i class="fa fa-picture-o text-6xl text-secondary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">资源包</h3>
+                        <p class="text-gray-400 text-sm mb-4">服务器定制资源包，增强游戏视觉体验</p>
+                        <div class="flex items-center text-gray-400 text-sm mb-5">
+                            <div class="flex items-center mr-4">
+                                <i class="fa fa-hdd-o mr-1"></i> 120MB
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-calendar mr-1"></i> 2023-06-10
+                            </div>
+                        </div>
+                        <a href="#" class="block w-full text-center py-3 bg-secondary hover:bg-secondary/80 rounded-lg font-medium transition-colors duration-300">
+                            <i class="fa fa-download mr-2"></i>下载资源包
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 安装教程 -->
+            <div class="mt-16 bg-dark-light/40 p-6 md:p-8 rounded-xl border border-gray-700">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fa fa-book text-primary mr-2"></i>安装教程
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">完整客户端安装</h4>
+                        <ol class="list-decimal list-inside text-gray-300 space-y-2 pl-2">
+                            <li>下载完整客户端压缩包</li>
+                            <li>解压到任意文件夹（不要放在系统盘Program Files目录）</li>
+                            <li>运行"OurWorldLauncher.exe"</li>
+                            <li>首次启动会自动安装必要组件</li>
+                            <li>登录账号后即可连接服务器</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">模组包安装（适用于已有启动器）</h4>
+                        <ol class="list-decimal list-inside text-gray-300 space-y-2 pl-2">
+                            <li>确保已安装Minecraft 1.18.2版本</li>
+                            <li>在启动器中创建新的1.18.2版本配置</li>
+                            <li>下载模组包并解压到对应版本的mods文件夹</li>
+                            <li>下载并安装对应的Forge版本</li>
+                            <li>启动游戏，添加服务器IP即可连接</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务器状态 -->
+    <section id="status" class="relative py-24 z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 text-shadow">服务器状态</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">实时查看服务器在线情况和性能状态</p>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-dark-light/60 rounded-xl p-6 md:p-8 border border-gray-700">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold">OurWorld - Create</h3>
+                            <p class="text-gray-400">生存 · 创造 · 机械</p>
+                        </div>
+                        <div class="flex items-center">
+                            <span id="statusIndicator" class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+                            <span id="statusText" class="text-green-400 font-medium">在线</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-dark/50 p-4 rounded-lg">
+                            <p class="text-gray-400 text-sm mb-1">在线玩家</p>
+                            <p class="text-3xl font-bold text-white" id="playerCount">24/100</p>
+                        </div>
+                        <div class="bg-dark/50 p-4 rounded-lg">
+                            <p class="text-gray-400 text-sm mb-1">延迟</p>
+                            <p class="text-3xl font-bold text-white" id="serverPing">32ms</p>
+                        </div>
+                        <div class="bg-dark/50 p-4 rounded-lg">
+                            <p class="text-gray-400 text-sm mb-1">版本</p>
+                            <p class="text-xl font-bold text-white" id="serverVersion">1.18.2</p>
+                        </div>
+                        <div class="bg-dark/50 p-4 rounded-lg">
+                            <p class="text-gray-400 text-sm mb-1">uptime</p>
+                            <p class="text-xl font-bold text-white" id="serverUptime">14天</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-3">在线玩家</h4>
+                        <div class="flex flex-wrap gap-2 max-h-40 overflow-y-auto scrollbar-hide pr-2">
+                            <!-- 玩家头像和名称 -->
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/1005/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                Player123
+                            </div>
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/1012/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                BuilderPro
+                            </div>
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/1025/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                RedstoneMaster
+                            </div>
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/1074/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                Explorer
+                            </div>
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/177/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                Miner49er
+                            </div>
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/338/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                FarmerJoe
+                            </div>
+                            <div class="flex items-center bg-dark/70 px-3 py-1.5 rounded-full text-sm">
+                                <img src="https://picsum.photos/id/349/32/32" alt="玩家头像" class="w-6 h-6 rounded-full mr-2">
+                                Architect
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-secondary">服务器性能</h3>
+                    <p class="text-gray-300 mb-6">我们的服务器采用高性能硬件，确保流畅的游戏体验，即使在复杂的机械装置运行时也能保持稳定的帧率。</p>
+                    
+                    <div class="space-y-6">
+                        <!-- CPU 使用率 -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">CPU 使用率</span>
+                                <span class="text-sm font-medium">32%</span>
+                            </div>
+                            <div class="w-full bg-dark rounded-full h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 32%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- 内存使用率 -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">内存使用率</span>
+                                <span class="text-sm font-medium">58%</span>
+                            </div>
+                            <div class="w-full bg-dark rounded-full h-2.5">
+                                <div class="bg-secondary h-2.5 rounded-full" style="width: 58%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- 网络流量 -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">网络流量</span>
+                                <span class="text-sm font-medium">12 Mbps</span>
+                            </div>
+                            <div class="w-full bg-dark rounded-full h-2.5">
+                                <div class="bg-accent h-2.5 rounded-full" style="width: 24%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- TPS -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">服务器 TPS</span>
+                                <span class="text-sm font-medium text-green-400">20.0</span>
+                            </div>
+                            <div class="w-full bg-dark rounded-full h-2.5">
+                                <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-dark-light/40 rounded-lg border border-gray-700">
+                        <h4 class="font-semibold mb-2 flex items-center">
+                            <i class="fa fa-info-circle text-primary mr-2"></i>服务器信息
+                        </h4>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li><span class="text-gray-400">IP地址:</span> mc.ourworldnetwork.com</li>
+                            <li><span class="text-gray-400">端口:</span> 25565</li>
+                            <li><span class="text-gray-400">游戏版本:</span> 1.18.2 (Forge)</li>
+                            <li><span class="text-gray-400">模组数量:</span> 42</li>
+                            <li><span class="text-gray-400">服务器位置:</span> 亚洲</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 社区部分 -->
+    <section id="community" class="relative py-24 z-10 bg-dark-light/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 text-shadow">加入我们的社区</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">与其他玩家交流、分享创意、参与活动，一起打造更精彩的游戏世界</p>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Discord -->
+                <div class="bg-dark-light/60 rounded-xl overflow-hidden border border-gray-700 hover:border-primary/50 transition-all duration-300 group">
+                    <div class="h-40 bg-[#5865F2]/20 flex items-center justify-center group-hover:bg-[#5865F2]/30 transition-colors">
+                        <i class="fa fa-comments text-6xl text-[#5865F2]"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Discord 社区</h3>
+                        <p class="text-gray-400 text-sm mb-5">加入我们的Discord服务器，获取最新公告、活动信息，与其他玩家实时交流</p>
+                        <a href="#" class="block w-full text-center py-3 bg-[#5865F2] hover:bg-[#5865F2]/80 rounded-lg font-medium transition-colors duration-300">
+                            加入 Discord
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 论坛 -->
+                <div class="bg-dark-light/60 rounded-xl overflow-hidden border border-gray-700 hover:border-primary/50 transition-all duration-300 group">
+                    <div class="h-40 bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-forumbee text-6xl text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">社区论坛</h3>
+                        <p class="text-gray-400 text-sm mb-5">在论坛分享你的建筑作品、机械设计，提问求助或撰写攻略教程</p>
+                        <a href="#" class="block w-full text-center py-3 bg-primary hover:bg-primary/80 rounded-lg font-medium transition-colors duration-300">
+                            访问论坛
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 社交媒体 -->
+                <div class="bg-dark-light/60 rounded-xl overflow-hidden border border-gray-700 hover:border-primary/50 transition-all duration-300 group">
+                    <div class="h-40 bg-gradient-to-r from-accent/20 to-secondary/20 flex items-center justify-center group-hover:from-accent/30 group-hover:to-secondary/30 transition-colors">
+                        <i class="fa fa-share-alt text-6xl text-accent"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">社交媒体</h3>
+                        <p class="text-gray-400 text-sm mb-5">关注我们的社交媒体账号，获取服务器精彩瞬间和幕后花絮</p>
+                        <div class="flex justify-center gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#1DA1F2]/20 flex items-center justify-center text-[#1DA1F2] hover:bg-[#1DA1F2]/40 transition-colors">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#E60023]/20 flex items-center justify-center text-[#E60023] hover:bg-[#E60023]/40 transition-colors">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#FF0000]/20 flex items-center justify-center text-[#FF0000] hover:bg-[#FF0000]/40 transition-colors">
+                                <i class="fa fa-youtube-play"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#34A853]/20 flex items-center justify-center text-[#34A853] hover:bg-[#34A853]/40 transition-colors">
+                                <i class="fa fa-discord"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 最新公告 -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-6 text-center">最新公告</h3>
+                <div class="bg-dark-light/60 rounded-xl p-6 md:p-8 border border-gray-700">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/4">
+                            <div class="bg-dark/50 rounded-lg p-4 text-center">
+                                <p class="text-gray-400 text-sm">2023年6月18日</p>
+                                <p class="text-primary font-bold text-xl mt-1">重大更新</p>
+                            </div>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h4 class="text-xl font-bold mb-3">Create模组版本更新与新功能上线</h4>
+                            <p class="text-gray-300 mb-4">
+                                我们很高兴地宣布，服务器已更新至Create 0.5.1版本，带来了全新的机械组件和功能优化。同时，我们新增了自动化物流系统和资源再生区域，为玩家提供更多创意空间。
+                            </p>
+                            <p class="text-gray-300 mb-4">
+                                本次更新还包括性能优化，减少了大型机械装置的卡顿问题。我们将于本周末举办机械创意大赛，优胜者将获得独家皮肤和游戏内奖励。
+                            </p>
+                            <a href="#" class="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
+                                查看完整公告 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 背景自定义设置（可选，可隐藏） -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button id="bgSettingsBtn" class="w-12 h-12 rounded-full bg-dark-light/80 bg-blur flex items-center justify-center text-gray-300 hover:text-white transition-colors shadow-lg">
+            <i class="fa fa-image"></i>
+        </button>
+        
+        <div id="bgSettingsPanel" class="hidden absolute bottom-16 right-0 bg-dark-light/90 bg-blur rounded-lg p-4 w-64 border border-gray-700 shadow-xl">
+            <h4 class="font-bold mb-3">背景设置</h4>
+            <p class="text-gray-400 text-sm mb-3">自定义主页背景图片</p>
+            <div class="mb-3">
+                <label class="block text-sm text-gray-400 mb-1">图片URL</label>
+                <input type="text" id="bgImageUrl" placeholder="输入图片URL" class="w-full bg-dark border border-gray-700 rounded px-3 py-2 text-sm focus:outline-none focus:border-primary">
+            </div>
+            <button id="applyBgBtn" class="w-full py-2 bg-primary hover:bg-primary/80 rounded text-sm font-medium transition-colors">
+                应用背景
+            </button>
+            <button id="resetBgBtn" class="w-full py-2 mt-2 bg-gray-700 hover:bg-gray-600 rounded text-sm font-medium transition-colors">
+                重置默认
+            </button>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="relative z-10 bg-dark-light/80 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                            <i class="fa fa-cube"></i>
+                        </div>
+                        <span class="text-xl font-bold">
+                            OurWorld<span class="text-primary">Network</span>
+                        </span>
+                    </a>
+                    <p class="text-gray-400 text-sm">
+                        一个专注于创意与协作的Minecraft服务器社区，让我们一起创造无限可能。
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="#about" class="hover:text-primary transition-colors">服务器介绍</a></li>
+                        <li><a href="#downloads" class="hover:text-primary transition-colors">下载</a></li>
+                        <li><a href="#status" class="hover:text-primary transition-colors">服务器状态</a></li>
+                        <li><a href="#community" class="hover:text-primary transition-colors">社区</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">资源</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">规则</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">教程</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">MOD列表</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">地图下载</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope-o mr-2 text-primary"></i>
+                            <a href="mailto:admin@ourworldnetwork.com" class="hover:text-primary transition-colors">admin@ourworldnetwork.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-discord mr-2 text-primary"></i>
+                            <a href="#" class="hover:text-primary transition-colors">Discord</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4 flex gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-primary hover:bg-dark-light transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-primary hover:bg-dark-light transition-colors">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-primary hover:bg-dark-light transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-dark flex items-center justify-center text-gray-400 hover:text-primary hover:bg-dark-light transition-colors">
+                            <i class="fa fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2023 OurWorldNetwork. 保留所有权利。
+                </p>
+                <p class="text-gray-500 text-sm">
+                    Minecraft 是 Mojang Studios 的商标。本网站与 Mojang 无关。
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'bg-dark-light/90', 'shadow-lg');
+                navbar.classList.remove('py-3', 'bg-dark-light/70');
+            } else {
+                navbar.classList.add('py-3', 'bg-dark-light/70');
+                navbar.classList.remove('py-2', 'bg-dark-light/90', 'shadow-lg');
+            }
+        });
+        
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 复制到剪贴板
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // 显示复制成功的提示
+                const originalText = element.textContent;
+                element.textContent = "已复制!";
+                element.classList.add('text-green-400');
+                
+                setTimeout(() => {
+                    element.textContent = originalText;
+                    element.classList.remove('text-green-400');
+                }, 2000);
+            }).catch(err => {
+                console.error('无法复制文本: ', err);
+            });
+        }
+        
+        // 背景设置面板
+        const bgSettingsBtn = document.getElementById('bgSettingsBtn');
+        const bgSettingsPanel = document.getElementById('bgSettingsPanel');
+        const applyBgBtn = document.getElementById('applyBgBtn');
+        const resetBgBtn = document.getElementById('resetBgBtn');
+        const bgImageUrl = document.getElementById('bgImageUrl');
+        const background = document.getElementById('background');
+        
+        // 切换设置面板显示/隐藏
+        bgSettingsBtn.addEventListener('click', function() {
+            bgSettingsPanel.classList.toggle('hidden');
+        });
+        
+        // 点击面板外区域关闭面板
+        document.addEventListener('click', function(event) {
+            if (!bgSettingsPanel.classList.contains('hidden') &&
+                !bgSettingsBtn.contains(event.target) &&
+                !bgSettingsPanel.contains(event.target)) {
+                bgSettingsPanel.classList.add('hidden');
+            }
+        });
+        
+        // 应用自定义背景
+        applyBgBtn.addEventListener('click', function() {
+            const url = bgImageUrl.value.trim();
+            if (url) {
+                // 尝试加载图片，验证URL有效性
+                const img = new Image();
+                img.onload = function() {
+                    background.style.backgroundImage = `url('${url}')`;
+                    // 保存到本地存储
+                    localStorage.setItem('customBgUrl', url);
+                    
+                    // 显示成功提示
+                    applyBgBtn.textContent = '应用成功!';
+                    applyBgBtn.classList.remove('bg-primary', 'hover:bg-primary/80');
+                    applyBgBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                    
+                    setTimeout(() => {
+                        applyBgBtn.textContent = '应用背景';
+                        applyBgBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                        applyBgBtn.classList.add('bg-primary', 'hover:bg-primary/80');
+                    }, 2000);
+                };
+                
+                img.onerror = function() {
+                    // 显示错误提示
+                    applyBgBtn.textContent = '无效的URL';
+                    applyBgBtn.classList.remove('bg-primary', 'hover:bg-primary/80');
+                    applyBgBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+                    
+                    setTimeout(() => {
+                        applyBgBtn.textContent = '应用背景';
+                        applyBgBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+                        applyBgBtn.classList.add('bg-primary', 'hover:bg-primary/80');
+                    }, 2000);
+                };
+                
+                img.src = url;
+            }
+        });
+        
+        // 重置默认背景
+        resetBgBtn.addEventListener('click', function() {
+            background.style.backgroundImage = "url('https://picsum.photos/id/1015/1920/1080')";
+            localStorage.removeItem('customBgUrl');
+            bgImageUrl.value = '';
+        });
+        
+        // 页面加载时检查是否有保存的自定义背景
+        window.addEventListener('load', function() {
+            const savedBgUrl = localStorage.getItem('customBgUrl');
+            if (savedBgUrl) {
+                background.style.backgroundImage = `url('${savedBgUrl}')`;
+                bgImageUrl.value = savedBgUrl;
+            }
+        });
+        
+        // 模拟服务器状态更新
+        function updateServerStatus() {
+            const playerCountEl = document.getElementById('playerCount');
+            const currentPlayers = parseInt(playerCountEl.textContent);
+            const maxPlayers = 100;
+            
+            // 随机增减1-3名玩家
+            const change = Math.floor(Math.random() * 5) - 2; // -2 到 2 之间的随机数
+            let newPlayers = currentPlayers + change;
+            
+            // 确保玩家数量在合理范围内
+            newPlayers = Math.max(0, Math.min(newPlayers, maxPlayers));
+            
+            playerCountEl.textContent = `${newPlayers}/${maxPlayers}`;
+            
+            // 随机更新延迟（20-50ms之间）
+            const pingEl = document.getElementById('serverPing');
+            const newPing = Math.floor(Math.random() * 31) + 20;
+            pingEl.textContent = `${newPing}ms`;
+        }
+        
+        // 每30秒更新一次服务器状态
+        setInterval(updateServerStatus, 30000);
+    </script>
+</body>
 </html>
